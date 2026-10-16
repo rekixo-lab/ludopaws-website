@@ -5,7 +5,9 @@ Static marketing website for https://ludopaws.rekixo.com/.
 ## Deployment
 - Production branch: `main`
 - Static site; no package manager or build step is required.
-- If using Cloudflare Pages, set framework preset to `None`, leave the build command empty, and use `.` as the output directory.
+- Cloudflare Worker deployment command: `npx wrangler deploy` (configured in Cloudflare Builds).
+- A commit pushed to `main` should trigger the connected Cloudflare build/deployment automatically.
+- If using Cloudflare Pages instead, set framework preset to `None`, leave the build command empty, and use `.` as the output directory.
 
 ## Pages
 - `/`
