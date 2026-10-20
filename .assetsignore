@@ -1,0 +1,16 @@
+/*
+!/_headers
+!/*.html
+!/favicon.svg
+!/assets/
+!/assets/**
+!/privacy-policy/
+!/privacy-policy/index.html
+!/terms-of-service/
+!/terms-of-service/index.html
+!/account-deletion/
+!/account-deletion/index.html
+!/guest-account-data/
+!/guest-account-data/index.html
+!/legal/
+!/legal/index.html
