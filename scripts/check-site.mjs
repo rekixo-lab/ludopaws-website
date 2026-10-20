@@ -18,6 +18,7 @@ for (const page of pages) {
 const privacy = fs.readFileSync("privacy-policy/index.html","utf8"), terms=fs.readFileSync("terms-of-service/index.html","utf8"),pricing=fs.readFileSync("pricing.html","utf8"),deletion=fs.readFileSync("account-deletion/index.html","utf8");
 assert.match(privacy,/No age entry is required/);
 assert.match(privacy,/child-directed/);
+for(const html of [privacy,terms,pricing]) assert.ok(html.includes("Before starting a new Google Play purchase"), "Paid checkout backup requirement must be disclosed");
 for(const html of [privacy,terms,pricing,deletion,fs.readFileSync("guest-account-data/index.html","utf8")])
   assert.doesNotMatch(html,/paws_plus|monthly-auto|Paws Plus|365 days|voice audio is sent|start optional voice chat/i);
 for(const token of ['/api/account/google/challenge','/api/account/google/login','/api/account/delete','/api/account/guest/delete','credentials: "omit"','cache: "no-store"']) assert.ok(deletion.includes(token),"Self-service deletion is missing "+token);
