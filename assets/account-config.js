@@ -1,0 +1,1 @@
+window.LUDO_ACCOUNT_CONFIG = {"apiBaseUrl": "https://api.ludopaws.rekixo.com", "googleWebClientId": "314526321614-tkmqq09apq7flovhkicodnsvffdrsimq.apps.googleusercontent.com", "supportEmail": "AI@rekixo.com"};
