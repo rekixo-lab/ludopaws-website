@@ -32,4 +32,6 @@ for(const item of contract.matchAll(/^  ([a-z][a-z0-9_]+): Object\.freeze\(\{\s*
   const amount=Number(item[2].replaceAll("_","")).toLocaleString("en-US")+" Gems";
   assert.ok(row.includes(amount),item[1]+" must disclose "+amount);
 }
+assert.equal(fs.readFileSync("app-ads.txt","utf8").trim(), "google.com, pub-9987799703505828, DIRECT, f08c47fec0942fa0");
+assert.ok(fs.readFileSync(".assetsignore","utf8").includes("!/app-ads.txt"),"AdMob authorization must be included in public assets");
 console.log("PASS: public routes, script syntax, family disclosures, exact Play fulfillment and secure self-service deletion");
