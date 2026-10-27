@@ -16,6 +16,12 @@ Static marketing website for https://ludopaws.rekixo.com/.
 - `/privacy-policy/`
 - `/terms-of-service/`
 
+## Public-release truth source
+- The 27 October 2026 [rollout evidence](https://github.com/rekixo-lab/ludopaws/blob/main/docs/REFERRAL_ACTIVATION_STATUS.md) records rc9 in production review at the last Console verification and rc10 in internal testing, not an independently confirmed public launch. Referral rewards remain OFF pending acceptance and publisher review.
+- Do not market free-text chat or voice in Family V2; both are disabled. Fixed quick-chat reactions are part of the game.
+- Reconcile README, privacy/legal pages, website feature descriptions and Play Store listing for the exact released app before changing availability claims.
+- The public site has a deliberately dated `/release-status.html` note. Update it with independently verified store availability before saying "Download now".
+
 ## Release checklist
 - Verify the Google Play listing is live and replace the search URL in `index.html` with the exact listing URL when available.
 - Verify privacy, retention, deletion, support, and governing-law details before treating legal pages as final.

@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import assert from "node:assert/strict";
 import { Script } from "node:vm";
-const pages = ["index.html","privacy-policy/index.html","terms-of-service/index.html","referral-terms.html","pricing.html","account-deletion/index.html","guest-account-data/index.html","legal/index.html"];
+const pages = ["index.html","privacy-policy/index.html","terms-of-service/index.html","referral-terms.html","pricing.html","account-deletion/index.html","guest-account-data/index.html","legal/index.html","release-status.html"];
 assert.deepEqual(JSON.parse(fs.readFileSync("wrangler.json", "utf8")).previews, {}, "Static website previews must not inherit separate production bindings or secrets");
 for (const page of pages) {
   const html = fs.readFileSync(page,"utf8");
@@ -40,4 +40,14 @@ for(const item of contract.matchAll(/^  ([a-z][a-z0-9_]+): Object\.freeze\(\{\s*
 }
 assert.equal(fs.readFileSync("app-ads.txt","utf8").trim(), "google.com, pub-9987799703505828, DIRECT, f08c47fec0942fa0");
 assert.ok(fs.readFileSync(".assetsignore","utf8").includes("!/app-ads.txt"),"AdMob authorization must be included in public assets");
+const releasePage = fs.readFileSync("release-status.html", "utf8");
+const home = fs.readFileSync("index.html", "utf8");
+const readme = fs.readFileSync("README.md", "utf8");
+for (const part of ["27 October 2026", "production review", "Free-text chat and voice are disabled", "internal testing", "Referral rewards remain OFF"]) {
+  assert.ok(releasePage.includes(part), "dated release page missing: " + part);
+}
+assert.match(home, /href="\/release-status\.html"/);
+assert.doesNotMatch(home, /Download Now|Available Now|Public Launch Complete/i);
+assert.match(readme, /Do not market free-text chat or voice/i);
+console.log("PASS: dated Family V2 release information and non-misleading public availability");
 console.log("PASS: public routes, script syntax, family disclosures, exact Play fulfillment and secure self-service deletion");
