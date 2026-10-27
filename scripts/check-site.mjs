@@ -2,7 +2,8 @@ import fs from "node:fs";
 import path from "node:path";
 import assert from "node:assert/strict";
 import { Script } from "node:vm";
-const pages = ["index.html","privacy-policy/index.html","terms-of-service/index.html","pricing.html","account-deletion/index.html","guest-account-data/index.html","legal/index.html","release-status.html"];
+const pages = ["index.html","privacy-policy/index.html","terms-of-service/index.html","referral-terms.html","pricing.html","account-deletion/index.html","guest-account-data/index.html","legal/index.html","release-status.html"];
+assert.deepEqual(JSON.parse(fs.readFileSync("wrangler.json", "utf8")).previews, {}, "Static website previews must not inherit separate production bindings or secrets");
 for (const page of pages) {
   const html = fs.readFileSync(page,"utf8");
   assert.match(html, /<html\b/i, page);
@@ -18,6 +19,10 @@ for (const page of pages) {
 const privacy = fs.readFileSync("privacy-policy/index.html","utf8"), terms=fs.readFileSync("terms-of-service/index.html","utf8"),pricing=fs.readFileSync("pricing.html","utf8"),deletion=fs.readFileSync("account-deletion/index.html","utf8");
 assert.match(privacy,/No age entry is required/);
 assert.match(privacy,/child-directed/);
+assert.match(privacy,/Optional friendship rewards/);
+assert.match(privacy,/referral-terms\.html/);
+const referral = fs.readFileSync("referral-terms.html", "utf8");
+for (const token of ["FINWORKAR", "100 Gems", "Pearl Paw Dice", "Blossom Garden Board", "Rabbit", "No purchase, ad view, rating or review is required"]) assert.ok(referral.includes(token), "Missing referral disclosure: " + token);
 for(const html of [privacy,terms,pricing]) assert.ok(html.includes("Before starting a new Google Play purchase"), "Paid checkout backup requirement must be disclosed");
 for(const html of [privacy,terms,pricing,deletion,fs.readFileSync("guest-account-data/index.html","utf8")])
   assert.doesNotMatch(html,/paws_plus|monthly-auto|Paws Plus|365 days|voice audio is sent|start optional voice chat/i);
@@ -38,7 +43,7 @@ assert.ok(fs.readFileSync(".assetsignore","utf8").includes("!/app-ads.txt"),"AdM
 const releasePage = fs.readFileSync("release-status.html", "utf8");
 const home = fs.readFileSync("index.html", "utf8");
 const readme = fs.readFileSync("README.md", "utf8");
-for (const part of ["25 October 2026", "production review", "Free-text chat and voice are disabled"]) {
+for (const part of ["27 October 2026", "production review", "Free-text chat and voice are disabled", "internal testing", "Referral rewards remain OFF"]) {
   assert.ok(releasePage.includes(part), "dated release page missing: " + part);
 }
 assert.match(home, /href="\/release-status\.html"/);
