@@ -3,6 +3,7 @@ import path from "node:path";
 import assert from "node:assert/strict";
 import { Script } from "node:vm";
 const pages = ["index.html","privacy-policy/index.html","terms-of-service/index.html","referral-terms.html","pricing.html","account-deletion/index.html","guest-account-data/index.html","legal/index.html"];
+assert.deepEqual(JSON.parse(fs.readFileSync("wrangler.json", "utf8")).previews, {}, "Static website previews must not inherit separate production bindings or secrets");
 for (const page of pages) {
   const html = fs.readFileSync(page,"utf8");
   assert.match(html, /<html\b/i, page);

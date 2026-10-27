@@ -4,6 +4,7 @@
   "compatibility_date": "2026-09-25",
   "workers_dev": true,
   "preview_urls": true,
+  "previews": {},
   "routes": [
     { "pattern": "ludopaws.rekixo.com", "custom_domain": true }
   ],
