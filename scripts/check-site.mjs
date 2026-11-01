@@ -43,11 +43,13 @@ assert.ok(fs.readFileSync(".assetsignore","utf8").includes("!/app-ads.txt"),"AdM
 const releasePage = fs.readFileSync("release-status.html", "utf8");
 const home = fs.readFileSync("index.html", "utf8");
 const readme = fs.readFileSync("README.md", "utf8");
-for (const part of ["27 October 2026", "production review", "Free-text chat and voice are disabled", "internal testing", "Referral rewards remain OFF"]) {
+for (const part of ["Publisher-confirmed launch: 1 November 2026", "27 October 2026", "production review", "Free-text chat and voice are disabled", "internal testing", "referral rewards remained OFF"]) {
   assert.ok(releasePage.includes(part), "dated release page missing: " + part);
 }
 assert.match(home, /href="\/release-status\.html"/);
-assert.doesNotMatch(home, /Download Now|Available Now|Public Launch Complete/i);
+assert.match(home, /Now on Google Play/);
+assert.match(home, /href="https:\/\/play\.google\.com\/store\/apps\/details\?id=com\.rekixo\.ludopaws"/);
+assert.doesNotMatch(home, /Public Launch Complete|worldwide availability guaranteed/i);
 assert.match(readme, /Do not market free-text chat or voice/i);
-console.log("PASS: dated Family V2 release information and non-misleading public availability");
+console.log("PASS: publisher-confirmed Play launch, historical Family V2 notes and region-aware availability");
 console.log("PASS: public routes, script syntax, family disclosures, exact Play fulfillment and secure self-service deletion");

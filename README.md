@@ -17,13 +17,14 @@ Static marketing website for https://ludopaws.rekixo.com/.
 - `/terms-of-service/`
 
 ## Public-release truth source
-- The 27 October 2026 [rollout evidence](https://github.com/rekixo-lab/ludopaws/blob/main/docs/REFERRAL_ACTIVATION_STATUS.md) records rc9 in production review at the last Console verification and rc10 in internal testing, not an independently confirmed public launch. Referral rewards remain OFF pending acceptance and publisher review.
+- **Publisher update, 1 November 2026:** Rekixo confirms LudoPaws is live on [Google Play](https://play.google.com/store/apps/details?id=com.rekixo.ludopaws) under package `com.rekixo.ludopaws`. Device, account and regional availability may vary; the exact current production APK/AAB version has not been independently established here.
+- **Historical 27 October 2026 record:** [rollout evidence](https://github.com/rekixo-lab/ludopaws/blob/main/docs/REFERRAL_ACTIVATION_STATUS.md) described rc9 in production review and rc10 in internal testing. It recorded referral rewards as OFF then; do not treat these old notes as the live configuration.
 - Do not market free-text chat or voice in Family V2; both are disabled. Fixed quick-chat reactions are part of the game.
 - Reconcile README, privacy/legal pages, website feature descriptions and Play Store listing for the exact released app before changing availability claims.
-- The public site has a deliberately dated `/release-status.html` note. Update it with independently verified store availability before saying "Download now".
+- `/release-status.html` now separates publisher-confirmed launch information from the dated candidate record. Do not promise worldwide availability or claim a specific production build without Play Console verification.
 
 ## Release checklist
-- Verify the Google Play listing is live and replace the search URL in `index.html` with the exact listing URL when available.
+- Confirm the publisher-approved Google Play listing URL and app access in the intended countries and test-device accounts before any campaign.
 - Verify privacy, retention, deletion, support, and governing-law details before treating legal pages as final.
 - Test every route on desktop and mobile after deployment.
 - Keep `api.ludopaws.rekixo.com` on its existing API Worker; do not attach the website hostname to that Worker.
