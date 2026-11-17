@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.rekixo.ludopaws",
+      "sha256_cert_fingerprints": [
+        "7C:99:D2:03:D9:9A:C6:F4:23:A1:78:8E:37:79:77:6A:C3:7B:85:0B:1E:B7:AC:86:0D:F5:C1:9E:EA:56:59:00"
+      ]
+    }
+  }
+]

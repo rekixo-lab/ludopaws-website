@@ -53,3 +53,14 @@ assert.doesNotMatch(home, /Public Launch Complete|worldwide availability guarant
 assert.match(readme, /Do not market free-text chat or voice/i);
 console.log("PASS: publisher-confirmed Play launch, historical Family V2 notes and region-aware availability");
 console.log("PASS: public routes, script syntax, family disclosures, exact Play fulfillment and secure self-service deletion");
+
+const assetLinks = JSON.parse(fs.readFileSync(".well-known/assetlinks.json", "utf8"));
+assert.equal(assetLinks.length, 1);
+assert.deepEqual(assetLinks[0].relation, ["delegate_permission/common.handle_all_urls"]);
+assert.equal(assetLinks[0].target.namespace, "android_app");
+assert.equal(assetLinks[0].target.package_name, "com.rekixo.ludopaws");
+const fingerprints = assetLinks[0].target.sha256_cert_fingerprints;
+assert.ok(Array.isArray(fingerprints) && fingerprints.length > 0);
+for (const fingerprint of fingerprints) assert.match(fingerprint, /^([0-9A-F]{2}:){31}[0-9A-F]{2}$/);
+assert.match(fs.readFileSync(".assetsignore", "utf8"), /^!\/\.well-known\/assetlinks\.json$/m);
+console.log("PASS: Android App Links declaration and deployment allowlist");
