@@ -15,3 +15,5 @@
 !/legal/
 !/legal/index.html
 !/app-ads.txt
+!/.well-known/
+!/.well-known/assetlinks.json
